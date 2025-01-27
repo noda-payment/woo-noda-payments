@@ -1,0 +1,57 @@
+{
+    "name": "nodapay/gateway",
+    "type": "wordpress-plugin",
+    "license": "GPLv3",
+    "config": {
+        "vendor-dir": "vendor",
+        "sort-packages": true,
+        "preferred-install": {
+            "*": "dist"
+        },
+        "allow-plugins": {
+            "composer/installers": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        },
+        {
+            "type": "vcs",
+            "url":  "NodaPay@vs-ssh.visualstudio.com:v3/NodaPay/Noda/noda-core-plugin"
+        }
+    ],
+    "require": {
+        "php": ">=7.4 <8.3",
+        "ext-json": "*",
+        "composer/installers": "2.x-dev",
+        "nodapay/base": "dev-master"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+        "phpcompatibility/phpcompatibility-wp": "^2.1",
+        "squizlabs/php_codesniffer": "^3.7",
+        "woocommerce/woocommerce-sniffs": "^0.0.2",
+        "wp-coding-standards/wpcs": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "NodaPay\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NodaPay\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test:standards": "/vendor/bin/phpcs -s .",
+        "fix:standards": "/vendor/bin/phpcbf .",
+        "test": "vendor/bin/phpunit"
+    },
+    "optimize-autoloader": true
+}
