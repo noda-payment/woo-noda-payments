@@ -41,7 +41,8 @@ class PayCallbackController extends BaseNodaController {
 
 	public function updateOrder( WP_REST_Request $request ): WP_REST_Response {
 		$params = $request->get_json_params();
-
+        var_dump('CHECK: 1');
+        var_dump($params);
 		$errors = $this->validateRequest( $params );
 
 		if ( ! empty( $errors ) ) {

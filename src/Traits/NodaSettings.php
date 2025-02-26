@@ -76,7 +76,7 @@ trait NodaSettings
                 }
                 break;
             default:
-                $url = get_permalink(wc_get_page_id( 'shop' ));
+                $url = $order->get_view_order_url();
         }
 
         return $url;

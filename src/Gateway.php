@@ -292,6 +292,12 @@ class Gateway extends WC_Payment_Gateway {
 
 	public function init_form_fields() {
 		$this->form_fields = [
+            'enabled' => [
+                'title' 		=> __( 'Enable/Disable' ),
+                'type' 			=> 'checkbox',
+                'label' 		=> __( 'Enable Noda Payment' ),
+                'default' 		=> 'yes'
+            ],
 			'nodalive_title'                  => [
 				'title'       => 'Title',
 				'type'        => 'text',
@@ -299,12 +305,6 @@ class Gateway extends WC_Payment_Gateway {
 				'default'     => 'NodaPay',
 				'desc_tip'    => true,
 			],
-            'enabled' => [
-                'title' => __('Włącz/Wyłącz', 'przelewy24'),
-                'type' => 'checkbox',
-                'label' => __('Aktywuj moduł płatności Przelewy24.', 'przelewy24'),
-                'default' => 'no'
-            ],
 			'nodalive_is_test'                => [
 				'title'       => 'Enable test mode',
 				'type'        => 'checkbox',
@@ -451,7 +451,8 @@ class Gateway extends WC_Payment_Gateway {
 
 			return $this->getResult( 'success', $order, $payUrl );
 		} catch ( \Throwable $e ) {
-			// here check different types of exceptions, add logging etc, add error messages to order etc
+            die(var_dump($e->getMessage()));
+            // here check different types of exceptions, add logging etc, add error messages to order etc
 			$this->handlePaymentFailure( $order, $e );
 
 			return $this->getResult( 'fail', $order );
